@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Dashboard from './src/screens/Dashboard/index'
 import Login from './src/screens/auth/index'
+import Journals from './src/screens/journals/index'
 import { primary } from "./utils/colors";
 
 const Stack = createNativeStackNavigator();
@@ -8,26 +9,20 @@ const Stack = createNativeStackNavigator();
 export const BaseStack = () => {
     return (
         <Stack.Navigator>
-            {/* <Stack.Screen name="Auth" component={Dashboard} /> */}
-            <Stack.Screen name="Home" screenOptions={{
-                headerStyle: {
-                    elevation: 0, // remove shadow on Android
+            <Stack.Screen name="Journal" component={Journals} />
+            {/* <Stack.Screen name="Login" component={Login} /> */}
+            <Stack.Screen name="Home" options={{
 
-                },
-            }} options={{
-                // headerShown:false
                 title: 'Dashboard',
                 headerStyle: {
-                    elevation: 0,
-                    // backgroundColor: "white",
-
-
+                    backgroundColor: "white",
                 },
                 headerTintColor: primary,
                 headerTitleStyle: {
                     fontWeight: 'bold',
                 },
             }} component={Dashboard} />
+            <Stack.Screen name="Journals" component={Journals} />
         </Stack.Navigator>
 
     );
