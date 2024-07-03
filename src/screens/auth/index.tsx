@@ -21,30 +21,10 @@ const Auth: React.FC<Props> = () => {
         pass_confirm: ""
     });
 
-    // const dispatch = useDispatch()
-    const [err, setError] = useState("")
-    const [ref, setRef] = useState("")
-    const submit = async () => {
-        const { name, email, password } = item
-        try {
-            console.log(item)
 
-            // console.log(await getData("FCMToken"))
-            // const res = await login({ email: ID_no, password, token: await getData("FCMToken") }).unwrap();
-            // console.log(res)
-            // dispatch(setCredentials({ ...res }))
-
-            // navigation.navigate("Home")
-
-        } catch (error) {
-            // setError(error?.data?.message)
-            // setRef(error?.data?.item)
-            console.log(error)
-        }
-    }
+  
     return (
         <View className='w-full h-full flex bg-blue-200 items-center justify-center'>
-
             <View className="relative z-0 w-full h-1/3">
                 {/* <View className="absolute sm:top-24  flex flex-wrap   z-8">
                     <Multiple count={7} body={<View className={`flex h-10 w-10  border-[#666666] border-l border-b border-t`}></View>} />
@@ -58,7 +38,7 @@ const Auth: React.FC<Props> = () => {
             </View>
 
             <View className="flex w-full h-2/3 py-4 bg-blue-100 rounded-t-[30px] shadow-2xl">
-                <Login />
+                <Login  />
             </View>
         </View>
     );

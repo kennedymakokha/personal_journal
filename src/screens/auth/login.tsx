@@ -5,12 +5,10 @@ import { View } from 'react-native';
 import { Inputcontainer } from '../../components/inputContainer';
 // import { primary, primaryLight } from '../../../utils/colors';
 import { Button } from '../../components/button';
-interface Props {
-    // title: string;
-    // onPress: () => void;
-}
-
-const Auth: React.FC<Props> = () => {
+type Props = {
+    navigation: any; // or use NavigationProp type if importing from @react-navigation/stack
+};
+const Login: React.FC<Props> = ({ navigation }) => {
 
     // const [login, { isLoading, isError, error }] = useLoginMutation();
     const [reg, setReg] = React.useState(true);
@@ -27,7 +25,9 @@ const Auth: React.FC<Props> = () => {
         const { name, email, password } = item
         try {
             console.log(item)
-            setReg(false)
+            // setReg(false)
+            navigation.navigate("Home")
+            // navigation.navigate("Home")
             // console.log(await getData("FCMToken"))
             // const res = await login({ email: ID_no, password, token: await getData("FCMToken") }).unwrap();
             // console.log(res)
@@ -82,4 +82,4 @@ const Auth: React.FC<Props> = () => {
 };
 
 
-export default Auth;
+export default Login;
