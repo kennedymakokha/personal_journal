@@ -1,5 +1,6 @@
 import { View, Text } from 'react-native'
 import React from 'react'
+import Authenticate from './src/screens/auth/index'
 
 export type Props = {
   name: string;
@@ -8,9 +9,7 @@ export type Props = {
 const App: React.FC<Props> = () => {
 
   return (
-    <View className='w-full h-full bg-red-200 items-center justify-center'>
-      <Text>App</Text>
-    </View>
+    <Authenticate />
   )
 }
 
