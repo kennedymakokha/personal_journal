@@ -3,6 +3,8 @@ import React from 'react'
 import Authenticate from './src/screens/auth/index'
 import { NavigationContainer } from '@react-navigation/native';
 import { BaseStack } from './navigation';
+import { Provider } from 'react-redux';
+import { store } from './store';
 export type Props = {
   name: string;
   baseEnthusiasmLevel?: number;
@@ -10,9 +12,11 @@ export type Props = {
 const App: React.FC<Props> = () => {
 
   return (
-    <NavigationContainer>
-      <BaseStack />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <BaseStack />
+      </NavigationContainer>
+    </Provider>
 
   )
 }

@@ -26,19 +26,6 @@ export const Multiple: React.FC<Props> = (props) => {
             ))}
         </View>
     )
-    // let count = []
-    // for (let index = 0; index < props.count; index++) {
-    //     count.push(index)
-    // }
-    // return (
-    //     <View className={`flex ${props.col ? "flex-col" : "flex-row"} w-full h-full py-4 bg-blue-100  shadow-2xl `} >
-
-    //         {count.map((user, i) => (
-    //             <View className={`${i === 9 - 1 && "border-r border-[#666666]"} `} key={i}>
-    //                 {props.body}
-    //             </View>
-    //         ))}
-    //     </View>
-    // )
+   
 }
 

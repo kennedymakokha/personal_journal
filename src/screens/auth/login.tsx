@@ -5,12 +5,16 @@ import { View } from 'react-native';
 import { Inputcontainer } from '../../components/inputContainer';
 // import { primary, primaryLight } from '../../../utils/colors';
 import { Button } from '../../components/button';
-type Props = {
-    navigation: any; // or use NavigationProp type if importing from @react-navigation/stack
-};
-const Login: React.FC<Props> = ({ navigation }) => {
+// import type, { LoginScreenProps } from '../../../types';
+import { useNavigation } from '@react-navigation/native';
+import Layout from './index'
+import { useDispatch } from 'react-redux';
+import { setCredentials } from '../../../features/slices/authSlice';
+import { useLoginMutation } from '../../../features/slices/userSlice';
 
-    // const [login, { isLoading, isError, error }] = useLoginMutation();
+const Register = () => {
+    const { navigate, goBack, ...rest } = useNavigation();
+    const [login, { isLoading, isError, error }] = useLoginMutation();
     const [reg, setReg] = React.useState(true);
     const [secure, setSecure] = React.useState(true);
     const [item, onChangeText] = React.useState({
@@ -19,21 +23,15 @@ const Login: React.FC<Props> = ({ navigation }) => {
         pass_confirm: ""
     });
 
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
     const submit = async () => {
-        const { name, email, password } = item
+        const { email, password } = item
         try {
-            console.log(item)
-            // setReg(false)
-            navigation.navigate("Home")
-            // navigation.navigate("Home")
-            // console.log(await getData("FCMToken"))
-            // const res = await login({ email: ID_no, password, token: await getData("FCMToken") }).unwrap();
-            // console.log(res)
-            // dispatch(setCredentials({ ...res }))
+            const res = await login({ email: email, password, }).unwrap();
+            dispatch(setCredentials({ ...res }))
 
-            // navigation.navigate("Home")
+            navigate('journals')
 
         } catch (error) {
             // setError(error?.data?.message)
@@ -42,44 +40,39 @@ const Login: React.FC<Props> = ({ navigation }) => {
         }
     }
     return (
-        <View className="flex w-full items-center justify-center">
+        <Layout body={<View className="flex w-full items-center justify-center">
             <Inputcontainer
+                multiline={false} value={item.name}
+
                 type="text"
                 required={true}
                 secure={false}
                 showPass={() => setSecure(!secure)}
-                placeholder="nebukadinezza" onChange={(e: any) => onChangeText(prevState => ({
+                placeholder="nebukadinezza"
+                onChange={(e: any) => onChangeText(prevState => ({
                     ...prevState, name: e
-                }))} label='userName' />
-            {/* {reg && <Inputcontainer 
-           
-           type="text"
-            required={true}
-            placeholder="example@mail.com" onChange={(e:any) => onChangeText(prevState => ({
-                ...prevState, email: e
-            }))} label='Email' />} */}
-            <Inputcontainer secure={secure} showPass={() => setSecure(!secure)} type='password'
+                }))}
+                label='userName' />
+
+            <Inputcontainer
+                multiline={false}
+                value={item.password}
+                secure={secure}
+                showPass={() => setSecure(!secure)}
+                type='password'
 
                 required={true}
                 placeholder="********" onChange={(e: any) => onChangeText(prevState => ({
                     ...prevState, password: e
                 }))} label='password' />
-            {reg ? <Inputcontainer secure={secure} showPass={() => setSecure(!secure)} type='password'
 
 
-                required={true}
-                placeholder="********" onChange={(e: any) => onChangeText(prevState => ({
-                    ...prevState, pass_confirm: e
-                }))} label='Confirm password' /> : null}
+            <Button title="Login" onClick={() => submit()} />
 
-            <Button title={reg ? "Register" : "Login"} onClick={() => submit()} />
-            {/* <View className='flex- w-full items-center justify-center'>
-                <Text className='text-red-500'>Login</Text>
-            </View> */}
-        </View>
+        </View>} />
 
     );
 };
 
 
-export default Login;
+export default Register;

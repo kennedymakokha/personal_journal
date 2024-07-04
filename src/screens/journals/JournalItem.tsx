@@ -1,28 +1,29 @@
-import { Image, Text, View } from "react-native"
+import { Image, Text, TouchableOpacity, View } from "react-native"
 import { Callender, back } from "../../../images"
 import { primary } from "../../../utils/colors"
+import { useNavigation } from "@react-navigation/native";
+import { DateContainer } from "../../components/dateComponent";
+import { truncate } from "../../../utils/trancateText";
 
 interface Props {
-    title: string,
+    data: any,
 
     // navigation: any
 }
 
 
-export const JournalItem: React.FC<Props> = ({ title }) => {
+export const JournalItem: React.FC<Props> = ({ data }) => {
+
+    const { navigate, goBack, ...rest } = useNavigation();
     return (
-        <View className="flex w-full h-20 my-2 rounded-[15px] shadow-2xl flex-row bg-white px-2">
-            <View className="w-[25%] h-full flex justify-center items-center ">
-                <Image source={Callender} className='h-full w-full' />
+        <TouchableOpacity onPress={() => navigate("Journal", { name: data.title, params: data })} activeOpacity={1} className="flex w-full h-20 my-2 rounded-[15px] shadow-2xl flex-row bg-white px-2">
+            <View className="w-[25%] h-full flex flex-col justify-center items-center ">
+                <DateContainer date={data.createdAt} />
             </View>
-
             <View className="flex w-[75%] justify-center  ">
-                <Text className='text-slate-500'>Kennesy Makokha</Text>
-                <Text className='text-slate-300 text-[10px]'>Kennesy Makokha Kennesy Makokha Kennesy Makokha Kennesy Makokha</Text>
+                <Text className='text-slate-500 font-bold'>{data.title}</Text>
+                <Text className='text-slate-400 text-[10px]'>{truncate(data.content, 100)}</Text>
             </View>
-
-        </View>
-
-
+        </TouchableOpacity>
     )
 }
