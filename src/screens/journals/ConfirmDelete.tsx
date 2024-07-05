@@ -1,4 +1,4 @@
-import { Text, TouchableOpacity, View } from "react-native"
+import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native"
 import { primary } from "../../../utils/colors"
 
 
@@ -13,8 +13,8 @@ interface Props {
 const Button = ({ outline, onClick, title, danger, loading }) => {
     return (
         <TouchableOpacity activeOpacity={1} onPress={onClick} className="flex w-1/2 px-2">
-            <View className={`flex w-full py-2 items-center justify-center ${loading && "opacity-60"} rounded-md ${danger ? "bg-red-500" : `bg-[${primary}]`} ${outline ? `border border-${primary}` : ``}`}>
-                <Text className="text-xl font-bold">{title}</Text>
+            <View className={`flex w-full py-2 items-center justify-center ${loading && "opacity-60"} rounded-md ${danger ? "bg-red-400" : ``} ${outline ? `border border-blue-300` : ``}`}>
+                {loading ? <ActivityIndicator size="small" color={primary} /> : <Text className="text-xl font-bold">{title}</Text>}
             </View>
         </TouchableOpacity>
     )
@@ -33,7 +33,7 @@ export const ComfirmDelete: React.FC<Props> = ({ setDelete, submit, loading }) =
                     </View>
                 </View>
             </View>
-            <View className="absolute inset-0  opacity-70 bg-black w-full h-full flex justify-center items-center z-2">
+            <View className="absolute inset-0  opacity-30 bg-black w-full h-full flex justify-center items-center z-2">
 
             </View>
 

@@ -7,7 +7,7 @@ export const bURl = "https://bd35-102-0-0-242.ngrok-free.app"
 //     return await AsyncStorage.getItem("token")
 
 // }
-let Token: string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzIwMTY0MzMwLCJleHAiOjE3MjAyMDAzMzB9.o6GQ4fP4CcNC0XLek8-GbqZ21CzmfHr7m7P4pZAzrw0"
+let Token: string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzIwMjAxMzc2LCJleHAiOjE3MjAyMzczNzZ9.JHBiQUNAZdvx2ZS6iOK9Cmi4jmu9HshJ0uZVZ5x-Nes"
 
 const getAuth = async (): Promise<string | null> => {
     try {

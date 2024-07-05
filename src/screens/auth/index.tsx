@@ -1,14 +1,9 @@
 // MyComponent.tsx
 
-import React, { useEffect, useState } from 'react';
+import React, {  } from 'react';
 import { View, Text, Image } from 'react-native';
 import { Logo } from '../../../images';
-import { primary } from '../../../utils/colors';
 
-import Login from './login'
-import { Multiple } from '../../../utils/multilple';
-import { getData } from '../../../utils/asyncStorage';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 interface Props {
     body: any

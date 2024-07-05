@@ -8,6 +8,7 @@ import Splash from "./src/screens/auth/splash";
 import Register from "./src/screens/auth/register";
 import type { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import { ParamListBase, RouteProp } from "@react-navigation/native";
+import { MyDrawer } from "./drawerNavigation";
 const Stack = createNativeStackNavigator();
 
 
@@ -55,7 +56,9 @@ export const JournalStack = () => {
             },
 
         })} >
-            <Stack.Screen name="Journals" component={Journals} />
+            <Stack.Screen name="Journals"
+                options={{ headerShown:false }}
+                component={MyDrawer} />
             <Stack.Screen name="Journal" options={({ route }: { route: RouteProp<ParamListBase, "Journal"> | any }) => ({
                 title: `${route.params?.name}`,
                 headerStyle: {

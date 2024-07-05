@@ -26,12 +26,12 @@ const Register = () => {
     const dispatch = useDispatch()
 
     const submit = async () => {
-       
+
         try {
             item.name = item.name.toLowerCase()
             const res = await login(item).unwrap();
             dispatch(setCredentials({ ...res }))
-
+            console.log(res)
             navigate('journals')
 
         } catch (error) {
