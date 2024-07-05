@@ -1,27 +1,22 @@
 // MyComponent.tsx
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, Image } from 'react-native';
 import { Logo } from '../../../images';
 import { primary } from '../../../utils/colors';
 
 import Login from './login'
 import { Multiple } from '../../../utils/multilple';
+import { getData } from '../../../utils/asyncStorage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 interface Props {
     body: any
 }
 
 const Auth: React.FC<Props> = ({ body }) => {
-
-    // const [login, { isLoading, isError, error }] = useLoginMutation();
-    const [isForget, setForgetPass] = React.useState(true);
-    const [item, onChangeText] = React.useState({
-        name: '123456789', password: '123456789',
-        email: "",
-        pass_confirm: ""
-    });
-
-
+    const { navigate, goBack, ...rest } = useNavigation();
+   
 
     return (
         <View className='w-full h-full flex bg-blue-400 items-center justify-center'>

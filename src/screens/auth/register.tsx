@@ -1,50 +1,47 @@
 // MyComponent.tsx
 
 import React from 'react';
-import { View } from 'react-native';
+import { Text, Touchable, TouchableOpacity, View } from 'react-native';
 import { Inputcontainer } from '../../components/inputContainer';
-// import { primary, primaryLight } from '../../../utils/colors';
 import { Button } from '../../components/button';
-// import type, { LoginScreenProps } from '../../../types';
 import { useNavigation } from '@react-navigation/native';
 import Layout from './index'
+import { useRegisterMutation } from '../../../features/slices/userSlice';
+import { Error } from '../../components/errorComponent';
 
 const Register = () => {
     const { navigate, goBack, ...rest } = useNavigation();
-    // const [login, { isLoading, isError, error }] = useLoginMutation();
+    const [register, { isLoading, isError }] = useRegisterMutation();
     const [reg, setReg] = React.useState(true);
+    const [error, setError] = React.useState("");
     const [secure, setSecure] = React.useState(true);
     const [item, onChangeText] = React.useState({
-        name: '123456789', password: '123456789',
+        name: '', password: '',
         email: "",
         pass_confirm: ""
     });
 
-    // const dispatch = useDispatch()
+
 
     const submit = async () => {
-        const { name, email, password } = item
         try {
-            console.log(item)
-            // setReg(false)
+            item.name = item.name.toLowerCase()
+            await register(item).unwrap();
             navigate('login')
-            // navigation.navigate("Home")
-            // console.log(await getData("FCMToken"))
-            // const res = await login({ email: ID_no, password, token: await getData("FCMToken") }).unwrap();
-            // console.log(res)
-            // dispatch(setCredentials({ ...res }))
-
-            // navigation.navigate("Home")
 
         } catch (error) {
-            // setError(error?.data?.message)
-            // setRef(error?.data?.item)
-            console.log(error)
+            setError(error?.data)
+
         }
     }
+
     return (
         <Layout body={<View className="flex w-full items-center justify-center">
+            {isError && <Error msg={error} />}
             <Inputcontainer
+                clickable={false}
+                multiline={false}
+                value={item.name}
                 type="text"
                 required={true}
                 secure={false}
@@ -52,32 +49,32 @@ const Register = () => {
                 placeholder="nebukadinezza" onChange={(e: any) => onChangeText(prevState => ({
                     ...prevState, name: e
                 }))} label='userName' />
-            <Inputcontainer
-                secure={false}
-                showPass={() => console.log("first")}
-                type="text"
-                required={false}
-                placeholder="example@mail.com" onChange={(e: any) => onChangeText(prevState => ({
-                    ...prevState, email: e
-                }))} label='Email' />
-            <Inputcontainer secure={secure} showPass={() => setSecure(!secure)} type='password'
+
+            <Inputcontainer clickable={false}
+                multiline={false}
+                value={item.password}
+                secure={secure} showPass={() => setSecure(!secure)} type='password'
 
                 required={true}
                 placeholder="********" onChange={(e: any) => onChangeText(prevState => ({
                     ...prevState, password: e
                 }))} label='password' />
-            {reg ? <Inputcontainer secure={secure} showPass={() => setSecure(!secure)} type='password'
-
-
+            {reg ? <Inputcontainer clickable={false}
+                multiline={false}
+                value={item.pass_confirm}
+                secure={secure} showPass={() => setSecure(!secure)} type='password'
                 required={true}
                 placeholder="********" onChange={(e: any) => onChangeText(prevState => ({
                     ...prevState, pass_confirm: e
                 }))} label='Confirm password' /> : null}
 
-            <Button title="Register" onClick={() => submit()} />
-            {/* <View className='flex- w-full items-center justify-center'>
-                <Text className='text-red-500'>Login</Text>
-            </View> */}
+            <Button isLoading={isLoading} title="Register" onClick={() => submit()} />
+            <View className='flex px-2   items-center justify-center'>
+                <Text className='text-blue-500'>Already have an acount</Text>
+                <TouchableOpacity activeOpacity={1} onPress={() => navigate("login")}>
+                    <Text className={`text-blue-800 font bold `}>Login</Text>
+                </TouchableOpacity>
+            </View>
         </View>} />
 
     );
