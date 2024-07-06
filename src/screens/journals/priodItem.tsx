@@ -20,3 +20,15 @@ export const PriodItem: React.FC<Props> = ({ title, isSuccess }) => {
 
     )
 }
+
+export const TabItem: React.FC<Props> = ({ title, isSuccess }) => {
+
+    return (
+        <View className="flex h-full w-1/3 p-1 bg-blue-400 items-center justify-center shadow-2xl ">
+            <View className="flex h-full w-full px-1 bg-blue-400 items-center justify-center shadow-2xl rounded-md border-blue-300 border">
+
+                <Text className="font-bold capitalize text-blue-900">{title}</Text>
+            </View>
+        </View>
+    )
+}

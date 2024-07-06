@@ -23,7 +23,7 @@ export const usersSlice = apiSlice.injectEndpoints({
 
         editUserDetails: builder.mutation({
             query: (data) => ({
-                url: `${USER_URL}/${data.user_id}`,
+                url: `${USER_URL}/user`,
                 method: "PUT",
                 body: data
             })
@@ -31,20 +31,15 @@ export const usersSlice = apiSlice.injectEndpoints({
 
 
         fetchuser: builder.query({
-            query: (id) => ({
-                url: `${USER_URL}/${id}`
+            query: () => ({
+                url: `${USER_URL}/user`
             })
         }),
 
 
 
-        deleteUser: builder.mutation({
-            query: (data) => ({
-                url: `${USER_URL}/${data._id}`,
-                method: "DELETE",
-            })
-        })
+
     })
 })
 
-export const { useDeleteUserMutation, useLoginMutation, useEditUserDetailsMutation, useRegisterMutation, useFetchuserQuery } = usersSlice
+export const { useLoginMutation, useEditUserDetailsMutation, useRegisterMutation, useFetchuserQuery } = usersSlice

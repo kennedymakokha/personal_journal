@@ -11,21 +11,19 @@ import Icon from 'react-native-vector-icons/FontAwesome6'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import { primary } from './utils/colors';
 import Profile from './src/screens/auth/profile';
+import { useFetchuserQuery } from './features/slices/userSlice';
+import { logout } from './features/slices/authSlice';
 const Drawer = createDrawerNavigator();
 
 
 
 const CustomDraw = (props: any) => {
-    // const navigate = useNavigate()
-    // const [logoutApiCall] = userL();
-    const { userInfo } = useSelector((state: any) => state.auth)
-    // console.log(state)
+    const { data: userInfo } = useFetchuserQuery({})
     const dispatch = useDispatch()
     const LogOutHandler = async () => {
         try {
-            // await logoutApiCall({ token: "token" }).unwrap()
-            // dispatch(logout({ id: userInfo.id, token: AsyncStorage.getItem('token') }))
-            props.navigation.navigate('Splash')
+            dispatch(logout({ id: userInfo.id }))
+            props.navigation.navigate('splash')
         } catch (error) {
             console.log(error)
         }
@@ -67,7 +65,7 @@ export function MyDrawer() {
 
             <Drawer.Screen name="Home1" options={{
                 title: "Dashboard",
-
+                headerStyle: { backgroundColor: primary },
                 drawerIcon: () => <AntDesign name="home" className="w-20  font-bold" color={primary} size={20} />
 
             }} component={Home} />

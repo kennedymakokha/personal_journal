@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Dashboard from './src/screens/Dashboard/index'
 import Login from './src/screens/auth/login'
-import Journals from './src/screens/journals/index'
+
 import Journal from './src/screens/journals/journal'
 import { primary } from "./utils/colors";
 import Splash from "./src/screens/auth/splash";
@@ -31,7 +31,7 @@ export const AuthStack = () => {
             },
 
         })} >
-            <Stack.Screen name="splach" component={Splash} />
+            <Stack.Screen name="splash" component={Splash} />
             <Stack.Screen name="login" component={Login} />
             <Stack.Screen name="registrer" component={Register} />
         </Stack.Navigator>
@@ -41,18 +41,15 @@ export const AuthStack = () => {
 export const JournalStack = () => {
     return (
         <Stack.Navigator screenOptions={({ route }: any) => ({
-
             headerStyle: {
                 backgroundColor: primary,
                 elevation: 0
             },
-            // header: "DashBoard",
             headerTitleStyle: {
                 fontWeight: 'semibold',
                 textTransform: 'capitalize',
                 letterSpacing: 2,
                 color: "white"
-                // textAlign: 'center'
             },
 
         })} >
@@ -65,14 +62,11 @@ export const JournalStack = () => {
                     backgroundColor: primary,
                     elevation: 0
                 },
-
-                // headerTintColor: quaternary,
                 headerTitleStyle: {
                     fontWeight: 'semibold',
                     textTransform: 'uppercase',
                     letterSpacing: 2,
                     color: "white"
-                    // textAlign: 'center'
                 },
 
             })}

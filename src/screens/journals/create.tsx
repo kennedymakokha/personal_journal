@@ -11,6 +11,7 @@ import Layout from './index'
 import DatePicker from 'react-native-date-picker';
 import { primary } from '../../../utils/colors';
 import { SelectInputContainer } from '../../components/selectInput';
+import { useFetchcategoriesQuery } from '../../../features/slices/categories';
 
 type Props = {
     data: any,
@@ -25,7 +26,7 @@ type Props = {
 export const Create: React.FC<Props> = (props) => {
 
     const [ocuurancedate, setDate] = useState(new Date())
-
+    const { data, isSuccess } = useFetchcategoriesQuery({})
     const [secure, setSecure] = React.useState(true);
     const { title, date, content, category } = props.item
     const { onChangeText, open, setOpen, isLoading } = props
@@ -76,32 +77,7 @@ export const Create: React.FC<Props> = (props) => {
                             onChange={(e: any) => onChangeText((prevState: any) => ({
                                 ...prevState, category: e
                             }))}
-                            array={[
-                                {
-                                    "id": 1,
-                                    "name": "fun",
-                                    "createdAt": "2024-07-03T08:21:39.546Z",
-                                    "updatedAt": "2024-07-03T08:21:39.546Z"
-                                },
-                                {
-                                    "id": 2,
-                                    "name": "Personal",
-                                    "createdAt": "2024-07-05T10:30:20.052Z",
-                                    "updatedAt": "2024-07-05T10:30:20.052Z"
-                                },
-                                {
-                                    "id": 3,
-                                    "name": "Work",
-                                    "createdAt": "2024-07-05T10:30:40.973Z",
-                                    "updatedAt": "2024-07-05T10:30:40.973Z"
-                                },
-                                {
-                                    "id": 4,
-                                    "name": "Travel",
-                                    "createdAt": "2024-07-05T10:30:55.703Z",
-                                    "updatedAt": "2024-07-05T10:30:55.703Z"
-                                }
-                            ]}
+                            array={isSuccess && data !== undefined && data}
 
 
                         />
@@ -121,7 +97,7 @@ export const Create: React.FC<Props> = (props) => {
                             }}
                             theme="light"
                             title={null}
-                            dividerColor={primary}
+                            d ividerColor={primary}
                             onCancel={() => {
                                 setOpen(false)
                             }}

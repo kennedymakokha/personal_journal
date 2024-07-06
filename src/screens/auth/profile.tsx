@@ -8,11 +8,13 @@ import { Inputcontainer } from '../../components/inputContainer';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
 import { MultipleBox } from '../../../utils/multilple';
+import Form from './form';
+import { useFetchuserQuery } from '../../../features/slices/userSlice';
 
 const Profile = () => {
     const [edit, setEdit] = useState(false)
     const [secure, setSecure] = React.useState(true);
-    const { userInfo } = useSelector((state: any) => state.auth)
+    const { data: userInfo } = useFetchuserQuery({})
     const [item, onChangeText] = React.useState({
         name: '', password: ''
 
@@ -21,7 +23,7 @@ const Profile = () => {
         const { title, value } = props
         return (
             <View className="flex  items-center  justify-center w-1/3 h-full">
-                <Text className={`text-xl font-bold text=[${primary}]`}>{title}</Text>
+                <Text className={`text-xl font-bold text-blue-800`}>{title}</Text>
                 <Text className='italic font-semibold text-blue-400'>{value} </Text>
             </View>
         )
@@ -31,8 +33,8 @@ const Profile = () => {
         const { label, value } = props
         return (
             <View className='flex mb-2 flex-row'>
-                <View className='w-[24%]  '><Text className='font-bold uppercase text-[18px]'>{label}:</Text></View>
-                <View className='w-2/3'><Text className='text-[18px]'>{value}</Text></View>
+                <View className='w-[24%]  '><Text className='font-bold uppercase text-[18px] text-blue-500'>{label}:</Text></View>
+                <View className='w-2/3'><Text className='text-[18px] text-blue-200'>{value}</Text></View>
             </View>
         )
     }
@@ -40,41 +42,17 @@ const Profile = () => {
         <View className="bg-white w-full h-full relative z-0">
             <View className="flex bg-blue-400 w-full h-1/3 items-center justify-center">
                 <View className="flex bg-white  rounded-full  w-40 h-40 items-center justify-center">
-                    <Icon name="user" size={140} />
+                    <Icon name="user" color={"#1a3e72"} size={140} />
                 </View>
             </View>
 
             <View className="flex  w-full h-3/4 items-center justify-center">
-                {!edit ? <View className="flex bg-white pt-20   w-full h-full px-2">
+                {!edit ? <View className="flex bg-white pt-20    w-full h-full px-10">
                     <Bio label="name" value={userInfo?.name} />
                     <Bio label="email" value={userInfo?.email} />
 
                 </View> : <View className="flex bg-white pt-14   w-full h-full px-1">
-                    <Inputcontainer clickable={false}
-                        multiline={false} value={item.name}
-                        type="text"
-                        required={true}
-                        secure={false}
-                        showPass={() => setSecure(!secure)}
-                        placeholder="nebukadinezza"
-                        onChange={(e: any) => onChangeText(prevState => ({
-                            ...prevState, name: e
-                        }))}
-                        label='userName' />
-
-                    <Inputcontainer clickable={false}
-                        multiline={false}
-                        value={item.password}
-                        secure={secure}
-                        showPass={() => setSecure(!secure)}
-                        type='password'
-
-                        required={true}
-                        placeholder="********" onChange={(e: any) => onChangeText(prevState => ({
-                            ...prevState, password: e
-                        }))} label='password' />
-
-                    <Button isLoading={false} title="Edit" onClick={() => console.log("firs")} />
+                    <Form page="edit" data={userInfo} />
                 </View>}
 
             </View>
@@ -83,7 +61,7 @@ const Profile = () => {
                 <Item title="Personal" value="100" />
                 <Item title="Travel" value="2100" />
             </View>
-          
+
 
             <View className="absolute right-3 top-3 flex justify-center items-center z-20">
                 <TouchableOpacity activeOpacity={1} onPress={() => setEdit(!edit)} className="flex w-10 h-10 border bg-white border-white items-center justify-center  rounded-full ">

@@ -32,7 +32,7 @@ const Splash = () => {
             <View className="relative z-0 w-full">
                 <View className="absolute  w-full bg-blue-200  flex flex-wrap  px-2  z-8">
 
-                    <MultipleBox count={50} body={<MultipleBox row={true} count={30} body={<View className={`flex h-5 w-5  border-[#666666] border-l border-b `}></View>} />} />
+                    {/* <MultipleBox count={50} body={<MultipleBox row={true} count={30} body={<View className={`flex h-5 w-5  border-[#666666] border-l border-b `}></View>} />} /> */}
                 </View>
 
                 <View className="absolute top-0 bg-red-100 flex justify-center  items-center z-10">

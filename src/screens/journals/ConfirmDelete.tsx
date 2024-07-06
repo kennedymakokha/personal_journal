@@ -10,11 +10,12 @@ interface Props {
     // navigation: any
 }
 
-const Button = ({ outline, onClick, title, danger, loading }) => {
+const Button = (props: any) => {
+    const { outline, onClick, title, danger, loading } = props
     return (
         <TouchableOpacity activeOpacity={1} onPress={onClick} className="flex w-1/2 px-2">
             <View className={`flex w-full py-2 items-center justify-center ${loading && "opacity-60"} rounded-md ${danger ? "bg-red-400" : ``} ${outline ? `border border-blue-300` : ``}`}>
-                {loading ? <ActivityIndicator size="small" color={primary} /> : <Text className="text-xl font-bold">{title}</Text>}
+                {loading ? <ActivityIndicator size="small" color="#1a3e72" /> : <Text className="text-xl font-bold">{title}</Text>}
             </View>
         </TouchableOpacity>
     )

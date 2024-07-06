@@ -14,7 +14,7 @@ import { ComfirmDelete } from './ConfirmDelete';
 import { useNavigation } from '@react-navigation/native';
 
 
-const Journals: React.FC = ({ route }: any) => {
+const Journals: React.FC = ({ route, navigation }: any) => {
 
     const [Edit, { isLoading, isError, error }] = useEditMutation();
     const [Delete, { isLoading: deleting, isError: errorDeleting }] = useDeleteMutation();
@@ -24,7 +24,7 @@ const Journals: React.FC = ({ route }: any) => {
     const paramData = route.params.params
     const { navigate, goBack, ...rest } = useNavigation();
     const { data, refetch, isSuccess } = useGetSingleQuery(paramData.id)
-    const { refetch: fetchJanals } = useGetQuery()
+    const { refetch: fetchJanals } = useGetQuery({})
     const [edit, setEdit] = useState(false)
     const [showdelete, setDelete] = useState(false)
     const [item, onChangeText] = React.useState({
@@ -47,8 +47,8 @@ const Journals: React.FC = ({ route }: any) => {
         try {
             await Delete(item).unwrap();
             await fetchJanals()
-
-            navigate('journals')
+            navigation.goBack()
+            // navigation.navigate('journals')
         } catch (error) {
             console.log(error)
         }
