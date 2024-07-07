@@ -34,14 +34,14 @@ export const SelectInputContainer: React.FC<Props> = (props) => {
     );
     return (
 
-        <View className="flex w-full  px-10  flex-col ">
+        <View className="flex w-full  px-5  flex-col ">
             <View className="flex flex-row items-center">
-                <Text className={`text-xl font-bold my-2 capitalize text-[${primary}]`} style={{ color: primary }}>{props.label}</Text>
+                <Text className={`text-xl font-bold my-4 capitalize text-[${primary}]`} style={{ color: primary }}>{props.label}</Text>
                 {props.required && <Text className="text-red-900  text-xl"> *</Text>}
             </View>
 
 
-            <View className={`flex w-full border flex-row ${show ? "rounded-t-md" : "rounded-md"} px-2  border-slate-400 `}>
+            <View className={`flex w-full relative border flex-row ${show ? "rounded-t-md" : "rounded-md"} px-2  border-slate-400 `}>
                 <TouchableOpacity className="flex flex-row" activeOpacity={1} onPress={openPicker}>
 
                     <TextInput
@@ -59,7 +59,7 @@ export const SelectInputContainer: React.FC<Props> = (props) => {
                 </TouchableOpacity>
                 {show ?
                     <FlatList
-                        className={`bg-blue-300 shadow-md ${show ? "border-l border-r border-b rounded-b-md" : ""}  border-slate-400 z-50 absolute  mt-14 w-[106%] -left-[0.5] right-0`}
+                        className={`bg-slate-50 shadow-md ${show ? "border-l border-r border-b rounded-b-md" : ""}  border-slate-400 z-20 absolute  mt-14 w-[106%] -left-[0.5] right-0`}
                         data={props.array}
                         renderItem={({ item, index }) => (
                             <TouchableOpacity

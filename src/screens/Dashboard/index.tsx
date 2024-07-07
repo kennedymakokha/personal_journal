@@ -31,13 +31,13 @@ const Dashboard: React.FC = () => {
         count.push(index)
     }
     return (
-        <View className="flex flex-col w-full h-full py-4 bg-blue-100  shadow-2xl">
+        <View className="flex flex-col w-full h-full py-4 bg-white  shadow-2xl">
             <View className=" w-full h-full relative z-0">
                 {/* <View className='w-full h-full  bg-red-100'></View> */}
                 <View className="  h-full flex px-1  ">
                     <View className="flex w-full flex-row  h-full gap-1 px-1 flex-wrap">
                         {Categories.map((cat, i) => (
-                            <CardItem key={i} title={cat.title} img={cat.img} />
+                            <CardItem key={i} title={cat.title} img={cat.img} navigation={undefined} />
                         ))}
                     </View>
                 </View>

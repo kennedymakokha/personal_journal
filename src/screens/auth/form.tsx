@@ -123,13 +123,20 @@ const Form = (props: any, { }) => {
                     ...prevState, pass_confirm: e
                 }))} label='Confirm password' />}
 
-            <Button isLoading={
-                props.page === "register" ? isLoading : props.page === "login" ? islogin : isEditing
-            } title={props.page === "register" ? "Register" : props.page === "login" ? "Login" : "Edit"} onClick={() => submit()} />
-            {props.page === "register" && <View className='flex px-2   items-center justify-center'>
+            {/* {props.page === "register" && <View className='flex px-2   items-center justify-center'>
                 <Text className='text-blue-500'>Already have an acount</Text>
                 <TouchableOpacity activeOpacity={1} onPress={() => navigate("login")}>
                     <Text className={`text-blue-800 font bold `}>Login</Text>
+                </TouchableOpacity>
+            </View>} */}
+            <Button isLoading={
+                props.page === "register" ? isLoading : props.page === "login" ? islogin : isEditing
+            } title={props.page === "register" ? "Register" : props.page === "login" ? "Login" : "Edit"} onClick={() => submit()} />
+
+            {props.page === "register" && <View className=' h-20   px-2   '>
+                <Text className='text-blue-500  text-center'>Already have an acount</Text>
+                <TouchableOpacity className='w-full  flex flex-row items-center justify-center' activeOpacity={1} onPress={() => navigate("login")}>
+                    <Text className={`text-blue-800 font bold w-full text-center `}>Login</Text>
                 </TouchableOpacity>
             </View>}
         </View>

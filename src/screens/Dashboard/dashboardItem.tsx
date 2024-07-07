@@ -12,10 +12,10 @@ interface Props {
 }
 
 
-const CardItem: React.FC<Props> = ({ title, navigation }) => {
+const CardItem: React.FC<Props> = ({ title }) => {
     return (
         <View className="flex w-1/2 h-1/4  rounded-lg shadow-2xl  p-1 ">
-            <TouchableOpacity activeOpacity={1} onPress={() => navigation.navigate("Auth")} className="flex w-full rounded-lg h-full  bg-blue-100 px-2 items-center justify-center  ">
+            <TouchableOpacity activeOpacity={1} onPress={() => console.log("first")} className="flex w-full rounded-lg h-full  bg-blue-100 px-2 items-center justify-center  ">
                 <Image source={
                     title === "Personal" ? Personal
                         : title === "Fun" ? Fun : title === "Travel" ? Travel : Work

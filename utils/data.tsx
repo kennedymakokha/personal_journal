@@ -1,5 +1,19 @@
-export const data = [
-    { "id": 2, "title": "Tear Gassed again", "content": "The day wa lit with teargas canisters Since its release in 2011, Day One has been one of the most highly recommended journaling apps, landing a spot as Apple's Editors Choice in the App Store numerous times. ", "category": 1, "createdBy": 4, "createdAt": "2024-07-03T08:21:54.078Z", "updatedAt": "2024-07-03T08:21:54.078Z" },
-    { "id": 3, "title": "Long Road Trip", "content": "Trip to Ugunja It's not hard to see why. The app offers a wide array of features—just about everything you might want or need in a digital journal. You can create journal entries in one click on the Mac from the menu bar, use templates to make journaling easier, and automatically add metadata, such as location, weather, motion activity, currently-playing music, and step count. There are optional prompts, if you're not sure what to write about. You can also tag entries with hashtags, insert photos and videos, password-protect your journal, and format entries in Markdown. And all of this is within an elegant, unobtrusive design. There are no gaudy, cluttered toolbars in sight: everything on the screen is useful for journaling.", "category": 1, "createdBy": 4, "createdAt": "2024-07-01T09:21:03.473Z", "updatedAt": "2024-07-04T09:21:03.473Z" },
-    { "id": 4, "title": "Ruto Must Go", "content": "Maandamano Tuesday Perhaps Day One's best feature is the ability to customize multiple reminders. Most other journal apps only send you one reminder during the day. But with Day One, you can get prompted to write, say, when you start the day, at lunchtime, and then at the end of your workday to keep track of your activities and thoughts throughout the day.", "category": 1, "createdBy": 4, "createdAt": "2024-07-02T09:21:23.183Z", "updatedAt": "2024-07-04T09:21:23.183Z" }
+export const Categorydata = [
+    {
+        id: 2,
+        title: "Personal",
+        state: false
+    },
+    {
+        id: 3,
+        state: false,
+        title: "Work",
+
+    },
+    {
+        id: 4,
+        state: false,
+        title: "Travel",
+
+    }
 ]

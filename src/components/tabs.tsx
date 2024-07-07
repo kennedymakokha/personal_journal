@@ -7,9 +7,9 @@ export default function Tab(props: any) {
     return (
         <>
             {props.data.map((menu: any, i: number) => (
-                <View key={i} className="flex h-full w-1/3 p-1 bg-blue-400  shadow-2xl ">
-                    <TouchableOpacity activeOpacity={1} onPress={() => props.onChange(menu.title)} className={`flex h-full w-full px-1 ${menu.state === true ? "bg-blue-500" : "border-blue-300 border bg-blue-400"} items-center justify-center shadow-2xl rounded-md `}>
-                        <Text className={`font-bold capitalize ${menu.state === true ? "" : "text-blue-900"}`}>{menu.title}</Text>
+                <View key={i} className={`flex h-full w-1/3 p-1 bg-blue-400  shadow-2xl `}>
+                    <TouchableOpacity activeOpacity={1} onPress={() => props.onChange(menu.title)} className={`flex h-full w-full px-1 ${menu.state === true ? "bg-blue-500" : "border-blue-300 border bg-blue-400"}  ${!props.isSuccess ? "bg-blue-300" : "bg-blue-400"} items-center justify-center shadow-2xl rounded-md `}>
+                        <Text className={` ${props.isSuccess && "text-blue-300"} font-bold capitalize ${menu.state === true ? "" : "text-blue-900"}`}>{menu.title}</Text>
                     </TouchableOpacity>
                 </View>
 

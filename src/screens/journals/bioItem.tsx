@@ -7,14 +7,14 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import { TouchableOpacity } from "react-native-gesture-handler"
 interface Props {
     setShow: any
-
+    isSuccess: any
 
 }
 
 
-export const Bio: React.FC<Props> = ({ setShow }) => {
+export const Bio: React.FC<Props> = ({ setShow, isSuccess }) => {
     const [time, setTime] = useState("")
-    const { data: userInfo, isSuccess } = useFetchuserQuery({})
+    const { data: userInfo } = useFetchuserQuery({})
     useEffect(() => {
         setTime(getGreatings())
     })

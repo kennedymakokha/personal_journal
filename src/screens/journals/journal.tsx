@@ -19,7 +19,7 @@ const Journals: React.FC = ({ route, navigation }: any) => {
 
     const [Edit, { isLoading, isError, error }] = useEditMutation();
     const [Delete, { isLoading: deleting, isError: errorDeleting }] = useDeleteMutation();
-    const { data: journals, refetch: fetchJournals } = useGetQuery({})
+    const { data: journals, refetch: fetchJournals } = useGetQuery({ startedDate: "", endDate: "" })
 
     const [open, setOpen] = useState(false)
     const paramData = route.params.params
@@ -52,20 +52,20 @@ const Journals: React.FC = ({ route, navigation }: any) => {
             await Delete(item).unwrap();
             await fetchJanals()
             navigation.goBack()
-            // navigation.navigate('journals')
         } catch (error) {
             console.log(error)
         }
     }
     return (
-        <View className="flex w-screen bg-blue-400    ">
+        <View className="flex w-screen bg-slate-50    ">
             <View className=" w-full h-full  relative z-0">
-                {!isSuccess && <View className="flex items-center justify-center  w-full h-full">
-                    <ActivityIndicator size="large" color="#fff" />
+                {!isSuccess && <View className="flex items-center   justify-center  w-full h-full">
+                    <ActivityIndicator size="large" color="#1a3e72" />
                 </View>}
-                <ScrollView className="flex w-full p-4  ">
+                {!edit ? <ScrollView className="flex w-full p-4  ">
                     <TouchableOpacity activeOpacity={1} onPress={() => setEdit(false)} className="flex flex-row justify-between">
-                        <View className='flex items-center h-20 justify-center flex-col'>
+                        <View className='flex  justify-center  h-20 justify-center flex-col'>
+                            <Text className='text-blue-900 font-bold'>Journal Date</Text>
                             <Text className='text-slate-800'>{moment(data?.date).format("dddd DD MMMM YYYY")}</Text>
                         </View>
                         <View className="w-[35%] h-28 flex flex-col justify-center items-center ">
@@ -73,15 +73,21 @@ const Journals: React.FC = ({ route, navigation }: any) => {
 
                         </View>
                     </TouchableOpacity>
-                    <View className="flex p-2 rounded-md border-blue-50 border">
+                    <View className="flex p-2 rounded-md ">
                         <Text style={{ color: primary }} className={`text-4xl text-[${primary}] pb-2 font-bold capitalize`}>{data?.title}</Text>
-                        <Text className='text-slate-200 text-[18px] text-[20px] text-justify'>{data?.content}</Text>
-                        <View className="flex p-2 h-14 justify-center">
-                            <View className='flex  h-full flex-row items-center justify-between px-2 rounded-md bg-blue-100'>
-                                <View className='flex flex-row items-center'><Icon name="calendar" color={primary} className='text-blue-400' size={20} />
-                                    <Text className='text-slate-400'> {moment(data?.createdAt).format("dddd DD MMMM YYYY")}</Text></View>
-                                <TouchableOpacity activeOpacity={1} onPress={() => setDelete(true)} className="flex border border-[red] float-right px-6 py-1 rounded-md">
-                                    <Icon1 name="trash-2" color="red" size={20} />
+                        <Text className='text-slate-500 text-[18px] text-[20px] text-justify'>{data?.content}</Text>
+                        <View className="flex py-2  h-24 justify-center">
+                            <View className='flex  h-full flex-row items-center justify-between p-4 rounded-md bg-blue-100'>
+                                <View className='flex flex-row items-center'>
+                                    <Icon name="calendar" color={primary} className='text-blue-400' size={34} />
+                                    <View className='flex px-2 '>
+                                        <Text className='font-bold  text-blue-800'>Published On</Text>
+                                        <Text className='text-slate-400 '>{moment(data?.createdAt).format("dddd DD MMMM YYYY")}</Text>
+                                    </View>
+                                </View>
+
+                                <TouchableOpacity activeOpacity={1} onPress={() => setDelete(true)} className="flex  bg-red-500 float-right px-2 py-2 rounded-md">
+                                    <Icon1 name="trash-2" color="white" size={20} />
                                 </TouchableOpacity>
                             </View>
 
@@ -89,12 +95,12 @@ const Journals: React.FC = ({ route, navigation }: any) => {
 
                     </View>
 
-                </ScrollView>
-                <FloatingTab add={true} setEdit={setEdit} />
+                </ScrollView> : <Create isLoading={isLoading} open={open} setOpen={setOpen} submit={submit} data={data} item={item} onChangeText={onChangeText} />
+                }
+                <FloatingTab edit={edit} add={true} setEdit={setEdit} />
                 {showdelete && <ComfirmDelete loading={deleting} submit={deleteJournal} setDelete={setDelete} />}
 
-                {edit && <Create isLoading={isLoading} open={open} setOpen={setOpen} submit={submit} data={data} item={item} onChangeText={onChangeText} />
-                }
+
             </View>
         </View>
     );

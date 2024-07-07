@@ -21,7 +21,8 @@ export const AuthStack = () => {
                 elevation: 0
             },
             headerShown: false,
-            // headerTintColor: quaternary,
+            headerTintColor: "white",
+            // headerBackTitleStyle: { color: "white" },
             headerTitleStyle: {
                 fontWeight: 'semibold',
                 textTransform: 'uppercase',
@@ -45,6 +46,7 @@ export const JournalStack = () => {
                 backgroundColor: primary,
                 elevation: 0
             },
+            headerTintColor: "white",
             headerTitleStyle: {
                 fontWeight: 'semibold',
                 textTransform: 'capitalize',
@@ -54,7 +56,7 @@ export const JournalStack = () => {
 
         })} >
             <Stack.Screen name="Journals"
-                options={{ headerShown:false }}
+                options={{ headerShown: false }}
                 component={MyDrawer} />
             <Stack.Screen name="Journal" options={({ route }: { route: RouteProp<ParamListBase, "Journal"> | any }) => ({
                 title: `${route.params?.name}`,

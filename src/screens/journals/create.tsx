@@ -29,15 +29,11 @@ export const Create: React.FC<Props> = (props) => {
 
     return (
         <>
-            {/* <View className="absolute w-full h-full right-0 top-[15%] flex justify-center items-center z-10">
-                <View className="flex w-full h-full items-center  justify-center  rounded-[10px] bg-blue-300 shadow-2xl">
+          
+            <ScrollView style={{ flex: 1 }}>
 
-                </View>
-            </View> */}
-            <ScrollView className="absolute w-full h-full right-0 top-[15%] flex  z-20">
-
-                <View className="flex w-full h-full items-center justify-center rounded-[10px] shadow-2xl">
-                    <View className="flex w-full pt-0 bg-blue-300 ">
+                <View className="flex w-full   items-center justify-center rounded-[10px] shadow-2xl">
+                    <View className="flex pt-0  pb-20 bg-white ">
                         <Inputcontainer clickable={false}
                             type="text"
                             required={true}
@@ -97,7 +93,7 @@ export const Create: React.FC<Props> = (props) => {
                                 setOpen(false)
                             }}
                         />
-                        <View className="flex mt-24">
+                        <View className="flex pt-20 ">
                             <Button isLoading={isLoading} title={props?.data?.id ? "Edit" : "Create"} onClick={props.submit} />
                         </View>
                     </View>
