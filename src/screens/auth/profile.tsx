@@ -33,8 +33,8 @@ const Profile = () => {
         const { label, value } = props
         return (
             <View className='flex mb-2 flex-row'>
-                <View className='w-[24%]  '><Text className='font-bold uppercase text-[18px] text-blue-500'>{label}:</Text></View>
-                <View className='w-2/3'><Text className='text-[18px] text-blue-200'>{value}</Text></View>
+                <View className='w-[24%]  '><Text className='font-bold uppercase text-[18px] text-blue-900'>{label}:</Text></View>
+                <View className='w-2/3'><Text className='text-[18px] text-black capitalize'>{value}</Text></View>
             </View>
         )
     }
@@ -47,7 +47,7 @@ const Profile = () => {
             </View>
 
             <View className="flex  w-full h-3/4 items-center justify-center">
-                {!edit ? <View className="flex bg-white pt-20    w-full h-full px-10">
+                {!edit ? <View className="flex bg-blue-100 pt-20    w-full h-full px-10">
                     <Bio label="name" value={userInfo?.name} />
                     <Bio label="email" value={userInfo?.email} />
 

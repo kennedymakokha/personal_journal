@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { getData } from '../../utils/asyncStorage'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-export const bURl = "https://895b-105-161-91-181.ngrok-free.app"
+export const bURl = "https://a1b8-102-0-0-242.ngrok-free.app"
 
 const getAuth = async (): Promise<string | null> => {
     try {
@@ -18,7 +18,6 @@ const baseQuery = fetchBaseQuery({
     prepareHeaders: async (headers) => {
         let token = await getAuth()
         headers.set('Authorization', `Bearer ${token}`)
-    
         return headers;
     },
 })

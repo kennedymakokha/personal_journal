@@ -1,13 +1,9 @@
 // MyComponent.tsx
 
 import React, { useState } from 'react';
-import { Alert, KeyboardAvoidingView, ScrollView, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { Inputcontainer } from '../../components/inputContainer';
-// import { primary, primaryLight } from '../../../utils/colors';
 import { Button } from '../../components/button';
-// import type, { LoginScreenProps } from '../../../types';
-import { useNavigation } from '@react-navigation/native';
-import Layout from './index'
 import DatePicker from 'react-native-date-picker';
 import { primary } from '../../../utils/colors';
 import { SelectInputContainer } from '../../components/selectInput';
@@ -33,12 +29,12 @@ export const Create: React.FC<Props> = (props) => {
 
     return (
         <>
-            <View className="absolute w-full h-full right-0 top-[15%] flex justify-center items-center z-10">
+            {/* <View className="absolute w-full h-full right-0 top-[15%] flex justify-center items-center z-10">
                 <View className="flex w-full h-full items-center  justify-center  rounded-[10px] bg-blue-300 shadow-2xl">
 
                 </View>
-            </View>
-            <View className="absolute w-full h-full right-0 top-[10%] flex justify-center items-center z-20">
+            </View> */}
+            <ScrollView className="absolute w-full h-full right-0 top-[15%] flex  z-20">
 
                 <View className="flex w-full h-full items-center justify-center rounded-[10px] shadow-2xl">
                     <View className="flex w-full pt-0 bg-blue-300 ">
@@ -82,11 +78,10 @@ export const Create: React.FC<Props> = (props) => {
 
                         />
 
-
-
                         <DatePicker
                             modal
                             open={open}
+                            mode="date"
                             date={ocuurancedate}
                             onConfirm={(date) => {
                                 setOpen(false)
@@ -97,7 +92,7 @@ export const Create: React.FC<Props> = (props) => {
                             }}
                             theme="light"
                             title={null}
-                            d ividerColor={primary}
+                            dividerColor={primary}
                             onCancel={() => {
                                 setOpen(false)
                             }}
@@ -107,7 +102,7 @@ export const Create: React.FC<Props> = (props) => {
                         </View>
                     </View>
                 </View>
-            </View>
+            </ScrollView>
         </>
 
     );

@@ -8,7 +8,7 @@ import { truncate } from "../../../utils/trancateText";
 interface Props {
     data: any,
 
-    // navigation: any
+    
 }
 
 

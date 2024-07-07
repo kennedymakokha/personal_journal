@@ -24,15 +24,13 @@ export const journalApiSlice = apiSlice.injectEndpoints({
                 body: data
             })
         }),
-
         get: builder.query({
-            query: () => `${USER_URL}`
+            query: (data) => `${USER_URL}?startedDate=${data.startedDate}&endDate=${data.endDate}`
         }),
         getSingle: builder.query({
             query: (id) => `${USER_URL}/${id}`
         }),
-
     })
 })
 
-export const { useDeleteMutation, useGetSingleQuery, useEditMutation, useGetQuery, usePostMutation } = journalApiSlice
+export const {useDeleteMutation,useEditMutation,useGetQuery,usePostMutation,useGetSingleQuery  } = journalApiSlice

@@ -5,7 +5,7 @@ import { primary } from "../../../utils/colors"
 interface Props {
     title: string,
     isSuccess: boolean
-    // navigation: any
+    
 }
 
 

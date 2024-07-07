@@ -1,5 +1,4 @@
 import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native"
-import { primary } from "../../../utils/colors"
 
 
 interface Props {
@@ -7,15 +6,15 @@ interface Props {
     setDelete: any
     submit: any
     loading: boolean
-    // navigation: any
+    
 }
 
 const Button = (props: any) => {
     const { outline, onClick, title, danger, loading } = props
     return (
         <TouchableOpacity activeOpacity={1} onPress={onClick} className="flex w-1/2 px-2">
-            <View className={`flex w-full py-2 items-center justify-center ${loading && "opacity-60"} rounded-md ${danger ? "bg-red-400" : ``} ${outline ? `border border-blue-300` : ``}`}>
-                {loading ? <ActivityIndicator size="small" color="#1a3e72" /> : <Text className="text-xl font-bold">{title}</Text>}
+            <View className={`flex w-full py-2 items-center justify-center ${loading && "opacity-60"} rounded-md ${danger ? "bg-red-400" : ``} ${outline ? ` text-blue-900 border border-blue-300` : ``}`}>
+                {loading ? <ActivityIndicator size="small" color="#1a3e72" /> : <Text className={`text-xl font-bold  ${outline && "text-blue-300"}`}>{title}</Text>}
             </View>
         </TouchableOpacity>
     )

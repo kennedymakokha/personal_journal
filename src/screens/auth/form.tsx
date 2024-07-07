@@ -6,12 +6,12 @@ import { Inputcontainer } from '../../components/inputContainer';
 import { Button } from '../../components/button';
 import { useNavigation } from '@react-navigation/native';
 import Layout from './index'
-import { useEditUserDetailsMutation, useLoginMutation, useRegisterMutation } from '../../../features/slices/userSlice';
+import { useEditUserDetailsMutation, useFetchuserQuery, useLoginMutation, useRegisterMutation } from '../../../features/slices/userSlice';
 import { Error } from '../../components/errorComponent';
 import { setCredentials } from '../../../features/slices/authSlice';
 import { useDispatch } from 'react-redux';
 
-const Form = (props: any, { navigation }) => {
+const Form = (props: any, { }) => {
     let initialState = {
         name: '', password: '',
         email: "",
@@ -21,7 +21,7 @@ const Form = (props: any, { navigation }) => {
     const [register, { isLoading, isError }] = useRegisterMutation();
     const [login, { isLoading: islogin, isError: isLoginErr }] = useLoginMutation();
     const [Edit, { isLoading: isEditing }] = useEditUserDetailsMutation();
-
+    const { data: userInfo, refetch } = useFetchuserQuery({})
     const [reg, setReg] = React.useState(true);
     const [error, setError] = React.useState("");
     const [secure, setSecure] = React.useState(true);
@@ -34,7 +34,7 @@ const Form = (props: any, { navigation }) => {
         const { data } = props
         if (props.data !== undefined) {
             onChangeText({
-                name: data.name, password: "",
+                name: data.name, password: data.password,
                 email: data.email,
                 pass_confirm: ""
             })
@@ -58,7 +58,6 @@ const Form = (props: any, { navigation }) => {
             try {
                 const res = await login(item).unwrap();
                 dispatch(setCredentials({ ...res }))
-
                 navigate('journals')
                 onChangeText(initialState)
             } catch (error: any) {
@@ -68,8 +67,9 @@ const Form = (props: any, { navigation }) => {
         } else {
             try {
                 await Edit(item).unwrap();
-                navigation.navigate('journals')
+                navigate('journals')
                 onChangeText(initialState)
+                await refetch()
             } catch (error: any) {
 
                 setError(error?.data)

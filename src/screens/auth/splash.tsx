@@ -3,8 +3,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
-import { Text, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
 import { Multiple, MultipleBox } from '../../../utils/multilple';
+import { back, HW, Logo } from '../../../images';
 
 const Splash = () => {
     const { navigate, goBack, ...rest } = useNavigation();
@@ -27,23 +28,19 @@ const Splash = () => {
 
 
     return (
-        <View className="flex w-full   ">
-
-            <View className="relative z-0 w-full">
-                <View className="absolute  w-full bg-blue-200  flex flex-wrap  px-2  z-8">
-
-                    {/* <MultipleBox count={50} body={<MultipleBox row={true} count={30} body={<View className={`flex h-5 w-5  border-[#666666] border-l border-b `}></View>} />} /> */}
-                </View>
-
-                <View className="absolute top-0 bg-red-100 flex justify-center  items-center z-10">
-
-                </View>
+        <View className="bg-g w-full h-full relative z-0">
+            <Image source={HW} className='w-full h-full' />
+            <View className="absolute  top-2 right-0 bg-blue-300 w-full h-full opacity-90 left-0 flex justify-center items-center z-20">
+                <Image source={Logo} />
             </View>
-
+            {/* <View className="absolute bg-blue-900  opacity-50 w-full h-full inset-0 flex justify-center items-center z-10">
+            </View> */}
         </View>
+
 
     );
 };
 
+{/* <MultipleBox count={50} body={<MultipleBox row={true} count={30} body={<View className={`flex h-5 w-5  border-[#666666] border-l border-b `}></View>} />} /> */ }
 
 export default Splash;
