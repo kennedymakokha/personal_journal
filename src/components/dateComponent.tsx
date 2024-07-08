@@ -4,8 +4,13 @@ import { primary, primaryLight } from "../../utils/colors";
 import Icon from 'react-native-vector-icons/Feather'
 import { Callender } from "../../images";
 import moment from "moment";
+import DatePicker from "react-native-date-picker";
+import { useState } from "react";
 interface Props {
     date: any
+    show: boolean
+    onConfirm: any
+    close: any
 
 }
 
@@ -23,6 +28,26 @@ export const DateContainer: React.FC<Props> = ({ date }) => {
                 <Text className={`text-[8px]  text-blue-500 font-[900]`}>{moment(date).format("dddd")}</Text>
             </View>
         </View>
+
+
+    )
+}
+
+
+export const DateComponent: React.FC<Props> = ({ date, show, onConfirm, close }) => {
+
+    return (
+        <DatePicker
+            modal
+            open={show}
+            mode="date"
+            date={new Date()}
+            onConfirm={onConfirm}
+            theme="light"
+            title={null}
+            dividerColor={primary}
+            onCancel={close}
+        />
 
 
     )

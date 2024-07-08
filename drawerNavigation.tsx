@@ -2,7 +2,7 @@ import { DrawerContentScrollView, DrawerItemList, createDrawerNavigator } from '
 import Home from './src/screens/journals/index'
 import { View } from 'react-native';
 import { ImageBackground } from 'react-native';
-import { Fun, back } from './images';
+import { Avatar, Fun, back } from './images';
 import { Image } from 'react-native';
 import { Text } from 'react-native';
 import { TouchableOpacity } from 'react-native';
@@ -33,7 +33,7 @@ const CustomDraw = (props: any) => {
         <View style={{ flex: 1 }}>
             <DrawerContentScrollView {...props} contentContainerStyle={{}}>
                 <ImageBackground source={back} style={{ padding: 20 }} >
-                    <Image source={Fun} style={{ height: 80, width: 80, borderRadius: 40, marginBottom: 10, borderColor: "white", borderWidth: 2 }} />
+                    <Image source={Avatar} style={{ height: 80, width: 80, borderRadius: 40, marginBottom: 10, borderColor: "white", borderWidth: 2 }} />
                     <Text style={{ color: '#fff', fontFamily: 'Roboto-Medium', textTransform: 'uppercase', fontSize: 30, fontWeight: 'bold', marginBottom: 5 }}>{userInfo?.name}</Text>
                     <Text style={{ color: '#fff', fontFamily: 'Roboto-regular', textTransform: 'uppercase' }}></Text>
 

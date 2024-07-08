@@ -6,4 +6,5 @@ import Personal from './assets/personal.png'
 import Callender from './assets/callender1.png'
 import HW from './assets/handriting.jpg'
 import back from './assets/bg.jpg'
-export { Logo, Fun,HW, Work, Travel, Personal, back, Callender }
+import Avatar from './assets/avatar.png'
+export { Logo,Avatar, Fun,HW, Work, Travel, Personal, back, Callender }

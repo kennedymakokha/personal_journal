@@ -123,12 +123,7 @@ const Form = (props: any, { }) => {
                     ...prevState, pass_confirm: e
                 }))} label='Confirm password' />}
 
-            {/* {props.page === "register" && <View className='flex px-2   items-center justify-center'>
-                <Text className='text-blue-500'>Already have an acount</Text>
-                <TouchableOpacity activeOpacity={1} onPress={() => navigate("login")}>
-                    <Text className={`text-blue-800 font bold `}>Login</Text>
-                </TouchableOpacity>
-            </View>} */}
+          
             <Button isLoading={
                 props.page === "register" ? isLoading : props.page === "login" ? islogin : isEditing
             } title={props.page === "register" ? "Register" : props.page === "login" ? "Login" : "Edit"} onClick={() => submit()} />

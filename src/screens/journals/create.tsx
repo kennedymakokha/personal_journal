@@ -8,6 +8,7 @@ import DatePicker from 'react-native-date-picker';
 import { primary } from '../../../utils/colors';
 import { SelectInputContainer } from '../../components/selectInput';
 import { useFetchcategoriesQuery } from '../../../features/slices/categories';
+import { DateComponent } from '../../components/dateComponent';
 
 type Props = {
     data: any,
@@ -29,7 +30,7 @@ export const Create: React.FC<Props> = (props) => {
 
     return (
         <>
-          
+
             <ScrollView style={{ flex: 1 }}>
 
                 <View className="flex w-full   items-center justify-center rounded-[10px] shadow-2xl">
@@ -73,26 +74,20 @@ export const Create: React.FC<Props> = (props) => {
 
 
                         />
-
-                        <DatePicker
-                            modal
-                            open={open}
-                            mode="date"
-                            date={ocuurancedate}
-                            onConfirm={(date) => {
+                        <DateComponent
+                            date={undefined}
+                            close={() => {
+                                setOpen(false)
+                            }}
+                            show={open}
+                            onConfirm={async (date: any) => {
                                 setOpen(false)
                                 setDate(date)
                                 onChangeText((prevState: any) => ({
                                     ...prevState, date: date.toString()
                                 }))
-                            }}
-                            theme="light"
-                            title={null}
-                            dividerColor={primary}
-                            onCancel={() => {
-                                setOpen(false)
-                            }}
-                        />
+                            }} />
+
                         <View className="flex pt-20 ">
                             <Button isLoading={isLoading} title={props?.data?.id ? "Edit" : "Create"} onClick={props.submit} />
                         </View>

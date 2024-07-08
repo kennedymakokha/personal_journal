@@ -3,6 +3,7 @@ import { Inputcontainer } from "./inputContainer"
 import DatePicker from "react-native-date-picker"
 import { useEffect, useState } from "react"
 import { primary } from "../../utils/colors"
+import { DateComponent } from "./dateComponent"
 
 
 interface Props {
@@ -31,55 +32,43 @@ export const DataRange: React.FC<Props> = ({ onChangeText, refetch, setShow, sta
                             value={null}
                             required={true}
                             multiline={false}
-                            placeholder={period?.startedDate ? period?.startedDate : "start Date"}
-                            onChange={() => setOpen(true)} label='Start Date' />
+                            placeholder={period?.startedDate ? period?.startedDate : "2022-05-07T19:19:00.000Z"}
+                            onChange={() => setOpen(true)} label="Start Date" />
                         <Inputcontainer clickable={true} secure={false} showPass={() => console.log("first")} type='date'
                             value={null}
                             required={true}
                             multiline={false}
-                            placeholder={period?.endDate ? period?.endDate : "end Date"}
+                            placeholder={period?.endDate ? period?.endDate : "2024-05-07T19:19:00.000Z"}
                             onChange={() => { setstart(true); }} label='End Date' />
-                        <DatePicker
-                            modal
-                            open={open}
-                            mode="date"
-                            date={ocuurancedate}
-                            onConfirm={(date) => {
+
+                        <DateComponent
+                            date={undefined}
+                            close={() => {
+                                setOpen(false)
+                            }}
+                            show={open}
+                            onConfirm={(date: any) => {
                                 setOpen(false)
                                 onChangeText((prevState: any) => ({
                                     ...prevState, startedDate: date.toString()
                                 }))
 
+                            }} />
+                        <DateComponent
+                            date={undefined}
+                            close={() => {
+                                setstart(false)
                             }}
-                            theme="light"
-                            title={null}
-                            dividerColor={primary}
-                            onCancel={() => {
-                                setOpen(false)
-                            }}
-                        />
-                        <DatePicker
-                            modal
-                            open={start}
-                            mode="date"
-                            date={ocuurancedate}
-                            onConfirm={async (date) => {
+                            show={start}
+                            onConfirm={async (date: any) => {
                                 setstart(false)
                                 onChangeText((prevState: any) => ({
                                     ...prevState, endDate: date.toString()
                                 }))
                                 await refetch()
                                 setShow(false)
-
-
-                            }}
-                            theme="light"
-                            title={null}
-                            dividerColor={primary}
-                            onCancel={() => {
-                                setstart(false)
-                            }}
-                        />
+                            }} />
+                       
                     </View>
 
                     <View className="flex h-4"></View>

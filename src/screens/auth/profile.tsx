@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Text, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
 import { primary } from '../../../utils/colors';
 import Icon from 'react-native-vector-icons/Feather'
 import { Button } from '../../components/button';
@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import { MultipleBox } from '../../../utils/multilple';
 import Form from './form';
 import { useFetchuserQuery } from '../../../features/slices/userSlice';
+import { Avatar } from '../../../images';
 
 const Profile = () => {
     const [edit, setEdit] = useState(false)
@@ -42,7 +43,9 @@ const Profile = () => {
         <View className="bg-white w-full h-full relative z-0">
             <View className="flex bg-blue-400 w-full h-1/3 items-center justify-center">
                 <View className="flex bg-white  rounded-full  w-40 h-40 items-center justify-center">
-                    <Icon name="user" color={"#1a3e72"} size={140} />
+                    {/* <Icon name="user" color={"#1a3e72"} size={140} /> */}
+                    <Image source={Avatar} style={{ height: 140, width: 140, borderRadius: 140, marginBottom: 10, borderColor: "white", borderWidth: 2 }} />
+
                 </View>
             </View>
 

@@ -1,7 +1,7 @@
 // MyComponent.tsx
 
 import React, { useState } from 'react';
-import { RefreshControl, ScrollView, View } from 'react-native';
+import { RefreshControl, ScrollView, Text, View } from 'react-native';
 import { Bio } from './bioItem';
 import { JournalItem, JournalItemLoader } from './JournalItem';
 
@@ -90,6 +90,9 @@ const Journals: React.FC = () => {
                                     await refetch();
                                 }} />}
                                 className="flex w-full  mt-2">
+                                {FiltedData.length === 0 && <View className="flex h-full w-full items-center justify-center">
+                                    <Text className='font-bold text-2xl text-slate-50'>No Journal Yet</Text>
+                                </View>}
                                 {isSuccess ? FiltedData.map((item: any, i: any) => (
                                     <JournalItem key={i} data={item} />
                                 )) : <Multiple col={false} row={false} wrap={false} count={7} body={<JournalItemLoader />} />}

@@ -25,7 +25,7 @@ const Journals: React.FC = ({ route, navigation }: any) => {
     const paramData = route.params.params
     const { navigate, goBack, ...rest } = useNavigation();
     const { data, refetch, isSuccess } = useGetSingleQuery(paramData.id)
-    const { refetch: fetchJanals } = useGetQuery({})
+
     const [edit, setEdit] = useState(false)
     const [showdelete, setDelete] = useState(false)
     const initialState: any = {
@@ -50,7 +50,7 @@ const Journals: React.FC = ({ route, navigation }: any) => {
     const deleteJournal = async () => {
         try {
             await Delete(item).unwrap();
-            await fetchJanals()
+            await fetchJournals()
             navigation.goBack()
         } catch (error) {
             console.log(error)
@@ -69,7 +69,7 @@ const Journals: React.FC = ({ route, navigation }: any) => {
                             <Text className='text-slate-800'>{moment(data?.date).format("dddd DD MMMM YYYY")}</Text>
                         </View>
                         <View className="w-[35%] h-28 flex flex-col justify-center items-center ">
-                            <DateContainer date={data?.date} />
+                            <DateContainer date={data?.date} show={false} onConfirm={undefined} close={undefined} />
 
                         </View>
                     </TouchableOpacity>
