@@ -50,7 +50,7 @@ export const Create: React.FC<Props> = (props) => {
                             secure={false}
                             multiline={true}
                             value={content}
-                            showPass={() => console.log("first")}
+                            showPass={() => console.log()}
                             type="text"
                             required={true}
                             placeholder={props?.data?.id ? props?.data?.content : "Once upon a time..."}

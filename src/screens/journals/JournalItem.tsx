@@ -19,7 +19,7 @@ export const JournalItem: React.FC<Props> = ({ data }) => {
     return (
         <TouchableOpacity onPress={() => navigate("Journal", { name: data.title, params: data })} activeOpacity={1} className="flex w-full h-20 my-2 rounded-[15px] shadow-2xl flex-row bg-white px-2">
             <View className="w-[25%] h-full flex flex-col justify-center items-center ">
-                <DateContainer close={console.log("first")} date={data.date} show={false} onConfirm={undefined} />
+                <DateContainer close={console.log()} date={data.date} show={false} onConfirm={undefined} />
             </View>
             <View className="flex w-[75%] justify-center  ">
                 <Text className='text-slate-500 font-bold'>{data.title}</Text>

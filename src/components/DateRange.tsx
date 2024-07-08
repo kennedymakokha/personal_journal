@@ -28,13 +28,13 @@ export const DataRange: React.FC<Props> = ({ onChangeText, refetch, setShow, sta
             <View className="absolute p-4 right-0 left-0 bottom-[5%] top-[5%] flex justify-center items-center z-10">
                 <View className="flex w-[80%] h-1/3 items-center justify-center rounded-md bg-slate-100 shadow-2xl">
                     <View className="flex w-full  items-center py-4    ">
-                        <Inputcontainer clickable={true} secure={false} showPass={() => console.log("first")} type='date'
+                        <Inputcontainer clickable={true} secure={false} showPass={() => console.log()} type='date'
                             value={null}
                             required={true}
                             multiline={false}
                             placeholder={period?.startedDate ? period?.startedDate : "2022-05-07T19:19:00.000Z"}
                             onChange={() => setOpen(true)} label="Start Date" />
-                        <Inputcontainer clickable={true} secure={false} showPass={() => console.log("first")} type='date'
+                        <Inputcontainer clickable={true} secure={false} showPass={() => console.log()} type='date'
                             value={null}
                             required={true}
                             multiline={false}
