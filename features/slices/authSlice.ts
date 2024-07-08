@@ -20,7 +20,7 @@ const authSlice = createSlice({
             AsyncStorage.removeItem('userInfo')
             AsyncStorage.removeItem('token')
             AsyncStorage.removeItem('user_id')
-            console.log("Logo")
+           
         },
 
     }

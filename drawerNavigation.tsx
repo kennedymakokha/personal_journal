@@ -23,7 +23,7 @@ const CustomDraw = (props: any) => {
     const dispatch = useDispatch()
     const LogOutHandler = async () => {
         try {
-            dispatch(logout({ id: userInfo.id }))
+            dispatch(logout({ id: userInfo?.id }))
             props.navigation.navigate('login')
         } catch (error) {
             console.log(error)
@@ -40,7 +40,6 @@ const CustomDraw = (props: any) => {
                 </ImageBackground>
                 <DrawerItemList {...props} />
                 <TouchableOpacity onPress={() => LogOutHandler()} className="flex justify-center   border-t py-2 bg-blue-900 border-t-[0.5px] items-center flex-row gap-x-10 px-5">
-                    {/* <AntDesign name="logout" className="w-20  font-bold" color={primary} size={15} /> */}
                     <Text className="font-bold">Logout</Text>
                 </TouchableOpacity>
             </DrawerContentScrollView>

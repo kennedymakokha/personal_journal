@@ -34,7 +34,8 @@ const Form = (props: any, { }) => {
         const { data } = props
         if (props.data !== undefined) {
             onChangeText({
-                name: data.name, password: data.password,
+                name: data.name,
+                password: "",
                 email: data.email,
                 pass_confirm: ""
             })
@@ -43,6 +44,7 @@ const Form = (props: any, { }) => {
 
     const submit = async () => {
         item.name = item.name.toLowerCase()
+
         if (props.page === "register") {
             try {
                 await register(item).unwrap();
@@ -98,7 +100,7 @@ const Form = (props: any, { }) => {
                 multiline={false}
                 value={item.email}
                 type="text"
-                required={true}
+                required={false}
                 secure={false}
                 showPass={() => setSecure(!secure)}
                 placeholder="nebu@example.com" onChange={(e: any) => onChangeText(prevState => ({
@@ -123,7 +125,7 @@ const Form = (props: any, { }) => {
                     ...prevState, pass_confirm: e
                 }))} label='Confirm password' />}
 
-          
+
             <Button isLoading={
                 props.page === "register" ? isLoading : props.page === "login" ? islogin : isEditing
             } title={props.page === "register" ? "Register" : props.page === "login" ? "Login" : "Edit"} onClick={() => submit()} />
